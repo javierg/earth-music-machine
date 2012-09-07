@@ -2,9 +2,15 @@ $( function(){
 
   var earth;
   var audio;
-  var city_mag_proportion = 3;
+  var city_mag_factor = 1.8;
   earth = new Earth("#earth");
   earth.animate();
+
+  var magnitude_factor = function( mag ) {
+    res = Math.pow(mag,city_mag_factor);
+    console.log( res );
+    return res;
+  }
 
   $.quakes({period: 'day'}, function(_q){
     var _frequencies = [];
@@ -23,7 +29,7 @@ $( function(){
         p = $( document.createElement('p') );
         p.append( evt_data.place );
         p.hide();
-        p.css( 'font-size', evt_data.mg * city_mag_proportion );
+        p.css( 'font-size', magnitude_factor( evt_data.mg ) );
         $('#cities').append(p.fadeIn());
       })
     });
