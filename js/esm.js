@@ -18,7 +18,9 @@ $( function(){
       audio = new AudioletApp( _frequencies, _quakes );
       audio.addEventListener('playing', function(evt){
         //evt includes evt.data with thequake location
-        console.log(evt.data);
+        evt_data = evt.data;
+        p = $( document.createElement('p') ).append(evt_data.place);
+        $('#cities').append(p);
       })
     });
 

@@ -38,3 +38,11 @@ body, html {
   float: right;
   font-size: 14px;
 }
+
+#cities {
+  top: 100px;
+  left: 20px;
+  position:absolute;
+  z-index: 1;
+  color: white;
+}
