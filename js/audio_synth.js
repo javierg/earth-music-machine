@@ -24,7 +24,7 @@ var Synth = function(audiolet, frequency) {
 };
 extend(Synth, AudioletGroup);
 
-var AudioletApp = function(fq, cities) {
+var AudioletApp = function(fq, data) {
   var pattern = new PSequence(fq, 1);
 
   this.audiolet = new Audiolet();
@@ -70,7 +70,7 @@ var AudioletApp = function(fq, cities) {
   this.audiolet.scheduler.play([pattern], 1,
     function(frequency) {
       var synth = new Synth(this.audiolet, frequency);
-      this.fire( {type: 'playing', data:cities[frequency]} );
+      this.fire( {type: 'playing', data: data[frequency]} );
       synth.connect(this.audiolet.output);
     }.bind(this)
   );

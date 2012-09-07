@@ -7,18 +7,18 @@ $( function(){
 
   $.quakes({period: 'day'}, function(_q){
     var _frequencies = [];
-    var _cities = [];
+    var _quakes = [];
     var _htz;
     $.each( _q, function(k, v){
       _htz = v.mg * 80
       _frequencies.push(_htz);
-      _cities[_htz] = v.place;
+      _quakes[_htz] = v;
     });
     $("#earth").click( function(){
-      audio = new AudioletApp( _frequencies, _cities );
+      audio = new AudioletApp( _frequencies, _quakes );
       audio.addEventListener('playing', function(evt){
         //evt includes evt.data with thequake location
-        console.log(evt);
+        console.log(evt.data);
       })
     });
 
