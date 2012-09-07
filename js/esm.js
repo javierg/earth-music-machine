@@ -2,6 +2,7 @@ $( function(){
 
   var earth;
   var audio;
+  var city_mag_proportion = 3;
   earth = new Earth("#earth");
   earth.animate();
 
@@ -19,8 +20,11 @@ $( function(){
       audio.addEventListener('playing', function(evt){
         //evt includes evt.data with thequake location
         evt_data = evt.data;
-        p = $( document.createElement('p') ).append(evt_data.place);
-        $('#cities').append(p);
+        p = $( document.createElement('p') );
+        p.append( evt_data.place );
+        p.hide();
+        p.css( 'font-size', evt_data.mg * city_mag_proportion );
+        $('#cities').append(p.fadeIn());
       })
     });
 
