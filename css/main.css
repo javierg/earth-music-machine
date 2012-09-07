@@ -39,7 +39,9 @@ body, html {
   float: right;
   font-size: 14px;
 }
-
+#earth {
+  background-image: url( '../img/backgrounds/outer_space_trip_08_by_brujo.jpg' );
+}
 #cities {
   top: 100px;
   left: 20px;

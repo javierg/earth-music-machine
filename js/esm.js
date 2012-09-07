@@ -3,6 +3,7 @@ $( function(){
   var earth;
   var audio;
   var city_mag_factor = 1.8;
+  var cities_elem = '#cities';
   earth = new Earth("#earth");
   earth.animate();
 
@@ -22,15 +23,17 @@ $( function(){
       _quakes[_htz] = v;
     });
     $("#earth").click( function(){
+      $( cities_elem ).empty();
       audio = new AudioletApp( _frequencies, _quakes );
       audio.addEventListener('playing', function(evt){
+
         //evt includes evt.data with thequake location
         evt_data = evt.data;
         p = $( document.createElement('p') );
-        p.append( evt_data.place );
+        p.append( evt_data.place )
         p.hide();
         p.css( 'font-size', magnitude_factor( evt_data.mg ) );
-        $('#cities').append(p.fadeIn());
+        $(cities_elem).append(p.fadeIn());
       })
     });
 
