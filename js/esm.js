@@ -26,8 +26,6 @@ $( function(){
       $( cities_elem ).empty();
       audio = new AudioletApp( _frequencies, _quakes );
       audio.addEventListener('playing', function(evt){
-
-        //evt includes evt.data with thequake location
         evt_data = evt.data;
         p = $( document.createElement('p') );
         p.append( evt_data.place )

@@ -3,8 +3,7 @@ var SCREEN_HEIGHT = window.innerHeight;
 
 Earth = ( function(){
   var container, stats, camera, scene, renderer, group;
-  var particleLight, pointLight, light;
-  var materials = [];
+  var particleLight, pointLight, light, map;
 
   function Earth(selector) {
     if (! $ || ! jQuery ) {
@@ -36,13 +35,17 @@ Earth = ( function(){
 
     loader.load( '/img/materials/earthmap.jpg' );
 
-    var sphere = new THREE.SphereGeometry( 200, 20, 20 );
+    var sphere = new THREE.SphereGeometry( 100, 20, 20 );
 
-    var map = new THREE.MeshLambertMaterial({
+    map = new THREE.MeshLambertMaterial({
       color: 0xFFFFFF,
       map: earthTexture,
-      overdraw: true
+      overdraw: true,
+      needsUpdate: true,
+      dynamic: true
     });
+
+    map.colorsNeedUpdate = true;
 
     var earthMesh = new THREE.Mesh( sphere, map );
     group.add( earthMesh );
@@ -50,17 +53,20 @@ Earth = ( function(){
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 
+    camera.position.x = ( SCREEN_WIDTH/2 - camera.position.x ) * 0.05;
+    camera.position.y = ( SCREEN_HEIGHT/2 - camera.position.y ) * 0.05;
+
     container.appendChild( renderer.domElement );
   }
 
   Earth.render = function() {
-    posX = SCREEN_WIDTH/2;
-    posY = SCREEN_HEIGHT/8;
-    camera.position.x += ( posX - camera.position.x ) * 0.05;
-    camera.position.y += ( posY - camera.position.y ) * 0.05;
     camera.lookAt( scene.position );
     group.rotation.y -= 0.005;
     renderer.render( scene, camera );
+  }
+
+  Earth.randomColor = function(n){
+    return Math.ceil( Math.random() * n )
   }
 
   Earth.prototype.animate = function() {

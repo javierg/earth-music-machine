@@ -5,12 +5,12 @@ var Synth = function(audiolet, frequency) {
   AudioletGroup.apply(this, [audiolet, 0, 1]);
   this.audiolet = new Audiolet();
   this.pulse = new Pulse(this.audiolet, frequency);
-  this.modulator = new Saw(this.audiolet, 2 * frequency);
-  this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 2, frequency);
+  this.modulator = new Saw(this.audiolet, 1.2 * frequency);
+  this.modulatorMulAdd = new MulAdd(this.audiolet, frequency / 4, frequency);
   this.gain = new Gain(this.audiolet);
 
   this.envelope = new PercussiveEnvelope(
-    this.audiolet, 1, 0.2, 0.5,
+    this.audiolet, 1, 0.4, 0.7,
     function(){
       this.audiolet.scheduler.addRelative( 0, this.remove.bind(this) );
     }.bind(this)
