@@ -9,7 +9,6 @@ $( function(){
 
   var magnitude_factor = function( mag ) {
     res = Math.pow(mag,city_mag_factor);
-    console.log( res );
     return res;
   }
 
@@ -31,7 +30,11 @@ $( function(){
         p.append( evt_data.place )
         p.hide();
         p.css( 'font-size', magnitude_factor( evt_data.mg ) );
+        if (evt_data.mg >= 5) {
+          p.addClass('danger');
+        }
         $(cities_elem).append(p.fadeIn());
+        earth.mood( evt_data );
       })
     });
 

@@ -14,7 +14,7 @@ Earth = ( function(){
   }
 
   Earth.init = function() {
-    camera = new THREE.PerspectiveCamera( 45, SCREEN_WIDTH/ SCREEN_HEIGHT, 1, 2000 );
+    camera = new THREE.PerspectiveCamera( 45, SCREEN_WIDTH/SCREEN_HEIGHT, 1, 2000 );
     camera.position.set( 0, 0, 600 );
     scene = new THREE.Scene();
 
@@ -23,6 +23,7 @@ Earth = ( function(){
 
     light = new THREE.DirectionalLight(0xffffff);
     light.position.set( 0, 10, 10 );
+    light.needsUpdate = true;
     scene.add( light );
 
     var earthTexture = new THREE.Texture();
@@ -35,7 +36,7 @@ Earth = ( function(){
 
     loader.load( '/img/materials/earthmap.jpg' );
 
-    var sphere = new THREE.SphereGeometry( 100, 20, 20 );
+    var sphere = new THREE.SphereGeometry( 160, 20, 20 );
 
     map = new THREE.MeshLambertMaterial({
       color: 0xFFFFFF,
@@ -51,7 +52,7 @@ Earth = ( function(){
     group.add( earthMesh );
 
     renderer = new THREE.WebGLRenderer();
-    renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
+    renderer.setSize( SCREEN_WIDTH-100, SCREEN_HEIGHT );
 
     camera.position.x = ( SCREEN_WIDTH/2 - camera.position.x ) * 0.05;
     camera.position.y = ( SCREEN_HEIGHT/2 - camera.position.y ) * 0.05;
@@ -72,6 +73,11 @@ Earth = ( function(){
   Earth.prototype.animate = function() {
     requestAnimationFrame( Earth.prototype.animate );
     Earth.render();
+  }
+
+  Earth.prototype.mood = function(data) {
+    var intensity = data.mg/10;
+    light.intensity = intensity
   }
 
   return Earth;

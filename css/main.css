@@ -35,8 +35,10 @@ body, html {
 }
 
 #head .version {
+  position: absolute;
   color: #e4e4e4;
-  float: right;
+  right: 100px;
+  top: 20px;
   font-size: 14px;
 }
 #earth {
@@ -48,4 +50,15 @@ body, html {
   position:absolute;
   z-index: 1;
   color: white;
+}
+
+#cities p{
+  margin: 10px 0;
+  margin: 6px 0;
+  text-shadow: 0px 0px 5px #C4C4C4;
+}
+
+#cities p.danger {
+  color: #ff0000;
+  text-shadow: none;
 }
