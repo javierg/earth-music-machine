@@ -23,15 +23,18 @@ time, mark, audio, video {
 body, html {
   background: black;
   font-family: sans-serif;
+  overflow: hidden;
+}
+h1 {
+  font-family: 'Russo One', sans-serif;
 }
 
 #head {
   font-family: verdana;
   font-size: 24px;
   padding: 10px 30px;
-  position: absolute;
+  position:relative;
   background: rgba(255,255,255, 0.5);
-  width: 100%;
 }
 
 #head .version {
@@ -40,6 +43,10 @@ body, html {
   right: 100px;
   top: 20px;
   font-size: 14px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+
 }
 #earth {
   background-image: url( '../img/backgrounds/outer_space_trip_08_by_brujo.jpg' );

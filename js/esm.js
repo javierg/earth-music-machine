@@ -33,6 +33,7 @@ $( function(){
         if (evt_data.mg >= 5) {
           p.addClass('danger');
         }
+        p.css( 'opacity', evt_data.mg % 10 * 0.20 )
         $(cities_elem).append(p.fadeIn());
         earth.mood( evt_data );
       })
