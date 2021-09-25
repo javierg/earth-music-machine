@@ -1,0 +1,21 @@
+{
+  "name": "esm",
+  "version": "1.0.0",
+  "description": "EARTH SOUND MACHINE ===================",
+  "main": "server.js",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "http": "0.0.1-security"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javierg/earth-music-machine.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javierg/earth-music-machine/issues"
+  },
+  "homepage": "https://github.com/javierg/earth-music-machine#readme"
+}
