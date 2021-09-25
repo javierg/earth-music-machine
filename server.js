@@ -6,4 +6,4 @@ var app = connect()
   .use(connect.bodyParser())
   .use( connect.static(__dirname))
 
-http.createServer(app).listen(8080);
+http.createServer(app).listen(80);
