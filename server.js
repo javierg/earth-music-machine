@@ -1,9 +1,12 @@
 var connect = require('connect');
 var http = require('http');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var serveStatic = require('serve-static');
 
 var app = connect()
-  .use(connect.logger('dev'))
-  .use(connect.bodyParser())
-  .use( connect.static(__dirname))
+  .use(logger("combined"))
+  .use(bodyParser())
+  .use(serveStatic(__dirname))
 
 http.createServer(app).listen(80);
