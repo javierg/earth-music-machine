@@ -2,8 +2,8 @@
   $.extend({
     quakes: function(){
       var options = {}
-      var remote_domain = 'http://earthquake.usgs.gov';
-      var service_url = 'earthquakes/feed/geojsonp';
+      var remote_domain = 'https://earthquake.usgs.gov';
+      var service_url = 'earthquakes/feed/v1.0/summary/2.5_day.geojsonp';
       var _cb = null;
 
       $.each( arguments, function(k, v) {
@@ -21,12 +21,13 @@
         options.period = 'week';
       }
 
-      var search_service = [remote_domain, service_url, options.intensity, options.period ].join('/') + '?callback=eqfeed_callback'
+      var search_service = [remote_domain, service_url ].join('/') + '?callback=eqfeed_callback'
       eqfeed_callback = function(data) {
         var _results = [];
+
         $.each( data.features, function(k, v) {
           prop = v.properties;
-          geo = v.geometry;
+          geo  = v.geometry;
           item = {
             place: prop.place,
             time: prop.time,

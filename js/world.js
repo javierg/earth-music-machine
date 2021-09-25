@@ -80,6 +80,22 @@ Earth = ( function(){
     light.intensity = intensity
   }
 
+  Earth.prototype.add_point = function(ln, lt) {
+    var cube = new THREE.CubeGeometry( 5, 5, 5 );
+    var obj = new THREE.Mesh(cube, new THREE.MeshLambertMaterial( { color: 0xff0000 } ) );
+
+    r = 160;
+
+    lon = ln * (Math.PI/180);
+    lat  = lt * (Math.PI/180);
+
+    obj.position.x = r * Math.cos(lat) * Math.cos(lon);
+    obj.position.y = r * Math.sin(lat) * -1;
+    obj.position.z = r * Math.cos(lat) * Math.sin(lon);
+
+    group.add(obj);
+  }
+
   return Earth;
 
 })();

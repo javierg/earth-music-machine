@@ -21,9 +21,10 @@ $( function(){
       _frequencies.push(_htz);
       _quakes[_htz] = v;
     });
+
     $("#earth").click( function(){
       $( cities_elem ).empty();
-      audio = new AudioletApp( _frequencies, _quakes );
+      audio = new AudioletApp(_frequencies, _quakes );
       audio.addEventListener('playing', function(evt){
         evt_data = evt.data;
         p = $( document.createElement('p') );
@@ -36,10 +37,10 @@ $( function(){
         p.css( 'opacity', evt_data.mg % 10 * 0.20 )
         $(cities_elem).append(p.fadeIn());
         earth.mood( evt_data );
+        earth.add_point(evt_data.ln, evt_data.lt);
       })
     });
 
     $("#loading").remove();
-
   });
 });
